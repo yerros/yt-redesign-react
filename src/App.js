@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./theme";
+import { GlobalStyles } from "./global";
+import Navbar from "./components/Navbar";
+import { setTheme } from "./actions/themeActions";
+import Header from "./components/Header";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  toggleTheme = () => {
+    const { theme } = this.props.menu;
+
+    if (theme === "lightMode") {
+      this.props.setMenu("darkMode");
+    } else {
+      this.props.setMenu("lightMode");
+    }
+  };
+  render() {
+    return (
+      <ThemeProvider
+        theme={this.props.menu.theme === "lightMode" ? lightTheme : darkTheme}
+      >
+        <>
+          <GlobalStyles />
+          <Header />
+          <div className="wrapper">
+            <Navbar />
+            <div className="main">
+              test
+              <footer></footer>
+            </div>
+          </div>
+        </>
+      </ThemeProvider>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    menu: state.themeReducer,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setMenu: (theme) => dispatch(setTheme(theme)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
