@@ -142,10 +142,13 @@ button:focus, .btn:focus {
     margin-left: -30px;
     color: ${({ theme }) => theme.textSecondary};
 }
+#mobile-nav {
+    display: none
+}
 /* Responsive */
 @media (max-width: 992px) and (max-width: 1199.98px) { 
     .navigation {
-    width: 15%;
+   display: none
 }
     .navigation-list {
     max-width: 10px;
@@ -154,6 +157,12 @@ button:focus, .btn:focus {
 .toogled {
     width: 20% !important;
     font-size: 16px !important;
+}
+.header-right {
+    display: none;
+}
+#mobile-nav {
+    display: flex;
 }
 }
 `;

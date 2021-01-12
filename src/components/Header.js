@@ -44,7 +44,7 @@ class Header extends Component {
   render() {
     return (
       <div className="header">
-        <Button className="btn bg-transparent border-0" onClick={this.toogle}>
+        <Button className="btn bg-transparent border-0 " onClick={this.toogle}>
           <Image className="menu-img" src={this.menuImage()} />
         </Button>
         <div className="logo">

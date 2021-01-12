@@ -28,7 +28,7 @@ class App extends Component {
           <div className="wrapper">
             <Navbar />
             <div className="main">
-              test
+              <div className="container">tes</div>
               <footer></footer>
             </div>
           </div>
